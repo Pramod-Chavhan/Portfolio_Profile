@@ -119,7 +119,7 @@ export default function HeroSection() {
               } flex items-center justify-center transition-colors duration-300`}
             >
               <img
-                src="/pic1.jpg"
+                src="/pic1.png"
                 alt="Transparent Image"
                 className="h-full object-contain z-10 relative"
               />
