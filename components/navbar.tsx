@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Skills", href: "#skills" },
   { name: "Certificates", href: "#certificates" },
   { name: "Contact", href: "#contact" },
+  { name: "Chatbot", href: "https://github.com/Pramod-Chavhan/Portfolio_Profile/tree/main", external: true },
 ]
 
 export default function Navbar({ activeSection }) {
