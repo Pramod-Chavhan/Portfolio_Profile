@@ -25,7 +25,8 @@ export default function SideNavigation({ activeSection }) {
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="fixed left-5 top-1/2 transform -translate-y-1/2 z-40 hidden md:block"
+      className="fixed left-5 top-1/2 -translate-y-1/2 transform z-40 hidden md:block"
+
     >
       <div className="flex flex-col items-center space-y-6">
         {navItems.map((item) => (
