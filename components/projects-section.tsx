@@ -280,7 +280,7 @@ export default function ProjectsSection() {
       tags: ["python", "deep-learning", "gan", "gen-ai"],
       category: "computer-vision",
       github: "https://github.com/Pramod-Chavhan/text-to-image",
-      demo: "https://text-to-image-demo.vercel.app",
+      demo: "https://v0-text-to-image-project-mu.vercel.app/",
       metrics: [
         { label: "FID Score", value: "18.3" },
         { label: "User Satisfaction", value: "4.6/5" },
