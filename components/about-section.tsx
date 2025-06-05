@@ -52,7 +52,7 @@ export default function AboutSection() {
             {/* Main image */}
             <div className="relative w-full h-full rounded-xl overflow-hidden border-4 border-gray-800 z-10">
               <Image
-                src="/Hero1.PNG?height=600&width=600"
+                src="/pic1.png?height=600&width=600"
                 alt="Pramod Chavhan"
                 width={600}
                 height={600}
