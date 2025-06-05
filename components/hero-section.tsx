@@ -106,7 +106,7 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto pb-20">
             <span className="text-sm text-muted-foreground mb-2">Scroll Down</span>
             <div className="w-6 h-10 border-2 rounded-full flex justify-center border-gray-500 dark:border-gray-400 transition-colors duration-300">
               <motion.div
