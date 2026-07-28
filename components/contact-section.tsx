@@ -41,19 +41,19 @@ export default function ContactSection() {
 
   const contactInfo = [
     {
-      icon: <Mail className="h-6 w-6 text-purple-500" />,
+      icon: <Mail className="h-6 w-6 text-teal-400" />,
       title: "Email",
       details: "pramodchavhanm@gmail.com",
       link: "mailto:pramodchavhanm@gmail.com",
     },
     {
-      icon: <Phone className="h-6 w-6 text-pink-500" />,
+      icon: <Phone className="h-6 w-6 text-sky-400" />,
       title: "Phone",
       details: "+91 7775881874" + " | " + "+91 9325891585",
       link: "tel:+919325891585",
     },
     {
-      icon: <MapPin className="h-6 w-6 text-blue-500" />,
+      icon: <MapPin className="h-6 w-6 text-cyan-400" />,
       title: "Location",
       details: "Pune, Maharashtra, India",
       link: "https://maps.google.com/?q=Pune,Maharashtra,India",
@@ -79,9 +79,9 @@ export default function ContactSection() {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <p className="text-lg text-purple-400 mb-2">Get In Touch</p>
-        <h2 className="text-4xl font-bold mb-4">Contact Me</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+        <p className="text-sm tracking-[0.2em] uppercase text-teal-400 mb-3">Get In Touch</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Contact Me</h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-sky-500 mx-auto"></div>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -100,7 +100,7 @@ export default function ContactSection() {
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-gray-800/50 border-gray-700 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300">
+              <Card className="bg-slate-900/60 border-slate-800 hover:shadow-lg hover:shadow-teal-900/20 transition-all duration-300">
                 <CardContent className="p-6">
                   <a href={info.link} target="_blank" rel="noopener noreferrer" className="flex items-start space-x-4">
                     <div className="p-3 rounded-full bg-gray-700/50">{info.icon}</div>
@@ -123,7 +123,7 @@ export default function ContactSection() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-gray-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-colors duration-300"
+                  className="p-3 rounded-full bg-slate-800 hover:bg-gradient-to-r hover:from-teal-600 hover:to-sky-600 transition-colors duration-300"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -225,7 +225,7 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 relative overflow-hidden group"
+                    className="w-full gradient-btn relative overflow-hidden group"
                   >
                     <span className="absolute top-0 left-0 w-full h-full bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                     {isSubmitting ? (

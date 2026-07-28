@@ -37,9 +37,9 @@ export default function ProfessionalBackground() {
 
         // Different colors for light and dark mode
         if (theme === "dark") {
-          this.color = "#7c3aed" // Purple for dark mode
+          this.color = "#14b8a6" // Teal for dark mode
         } else {
-          this.color = "#6d28d9" // Darker purple for light mode
+          this.color = "#0f766e" // Darker teal for light mode
         }
 
         this.opacity = Math.random() * 0.5 + 0.1
@@ -88,9 +88,9 @@ export default function ProfessionalBackground() {
 
       // Draw connections with different colors for light/dark mode
       if (theme === "dark") {
-        ctx.strokeStyle = "rgba(124, 58, 237, 0.05)" // Purple for dark mode
+        ctx.strokeStyle = "rgba(20, 184, 166, 0.06)"
       } else {
-        ctx.strokeStyle = "rgba(109, 40, 217, 0.03)" // Darker purple for light mode
+        ctx.strokeStyle = "rgba(15, 118, 110, 0.04)"
       }
 
       ctx.lineWidth = 0.5
@@ -183,14 +183,14 @@ export default function ProfessionalBackground() {
 
       {/* Light mode specific decorative elements */}
       <div className="fixed inset-0 z-0 light:block dark:hidden opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-purple-200 to-transparent rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-indigo-200 to-transparent rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-teal-200 to-transparent rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-sky-200 to-transparent rounded-full filter blur-3xl"></div>
       </div>
 
       {/* Dark mode specific decorative elements */}
       <div className="fixed inset-0 z-0 light:hidden dark:block opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-purple-900 to-transparent rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-indigo-900 to-transparent rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-teal-900 to-transparent rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-sky-900 to-transparent rounded-full filter blur-3xl"></div>
       </div>
     </>
   )

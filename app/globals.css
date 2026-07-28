@@ -4,68 +4,68 @@
 
 @layer base {
   :root {
-    /* Light mode colors */
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    /* Light — charcoal / steel teal */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 262.1 83.3% 57.8%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 173 58% 32%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 40%;
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 199 89% 42%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 262.1 83.3% 57.8%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 173 58% 32%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
     --rotate: 0deg;
   }
 
   .dark {
-    /* Dark mode colors */
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    /* Dark charcoal / teal accent */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
 
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
+    --card: 222 40% 9%;
+    --card-foreground: 210 40% 96%;
 
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 222 40% 9%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 173 58% 45%;
+    --primary-foreground: 222 47% 6%;
 
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 217 25% 14%;
+    --secondary-foreground: 210 40% 96%;
 
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --muted: 217 25% 14%;
+    --muted-foreground: 215 16% 65%;
 
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 199 80% 48%;
+    --accent-foreground: 222 47% 6%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 263.4 70% 50.4%;
+    --border: 217 25% 16%;
+    --input: 217 25% 16%;
+    --ring: 173 58% 45%;
   }
 }
 
@@ -99,14 +99,39 @@ html {
   @apply bg-primary/50;
 }
 
-/* Gradient text */
+/* Gradient text — teal → sky */
 .gradient-text {
-  @apply bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-teal-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent;
 }
 
-/* Light mode specific gradient text */
 .light .gradient-text {
-  @apply bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-700 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-teal-700 via-cyan-700 to-sky-700 bg-clip-text text-transparent;
+}
+
+.gradient-btn {
+  @apply shadow-lg shadow-teal-900/30 transition-all duration-300;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 5s ease-in-out infinite;
 }
 
 /* Animations */
@@ -399,14 +424,14 @@ html {
 
 /* Animated gradient button */
 .gradient-btn {
-  @apply relative overflow-hidden;
+  @apply relative overflow-hidden text-white;
   background-size: 200% 200%;
-  background-image: linear-gradient(45deg, #7c3aed, #4f46e5, #8b5cf6, #7c3aed);
+  background-image: linear-gradient(45deg, #0d9488, #0284c7, #14b8a6, #0d9488);
   animation: gradient-shift 4s ease infinite;
 }
 
 .light .gradient-btn {
-  background-image: linear-gradient(45deg, #6d28d9, #4f46e5, #8b5cf6, #6d28d9);
+  background-image: linear-gradient(45deg, #0f766e, #0369a1, #0d9488, #0f766e);
 }
 
 @keyframes gradient-shift {

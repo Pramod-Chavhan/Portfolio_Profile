@@ -44,7 +44,7 @@ export default function ScrollToTopWithChatbot() {
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.3 }}
             onClick={scrollToTop}
-            className="fixed bottom-24 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none"
+            className="fixed bottom-24 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-teal-600 to-sky-600 text-white shadow-lg hover:from-teal-500 hover:to-sky-500 focus:outline-none"
             aria-label="Scroll to top"
           >
             <ChevronUp className="h-6 w-6" />

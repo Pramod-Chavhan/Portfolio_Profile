@@ -36,7 +36,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-900/80 py-12 border-t border-gray-800">
+    <footer className="bg-slate-950/90 py-12 border-t border-slate-800">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
           <motion.div
@@ -48,7 +48,7 @@ export default function Footer() {
           >
             <Link
               href="#home"
-              className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
+              className="text-2xl font-display font-bold bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent"
             >
               Pramod Chavhan
             </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-gray-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-colors duration-300"
+                className="p-2 rounded-full bg-slate-800 hover:bg-gradient-to-r hover:from-teal-600 hover:to-sky-600 transition-colors duration-300"
                 aria-label={link.label}
               >
                 {link.icon}
@@ -80,13 +80,13 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-center text-gray-400 text-sm"
+            className="text-center text-slate-500 text-sm"
           >
             <p className="flex items-center justify-center">
-              &copy; {currentYear} Pramod Chavhan. Made with <Heart className="h-4 w-4 mx-1 text-pink-500" /> All rights
-              reserved.
+              &copy; {currentYear} Pramod Chavhan. Built with care{" "}
+              <Heart className="h-4 w-4 mx-1 text-teal-500" /> All rights reserved.
             </p>
-            <p className="mt-1">Data Scientist | Python Developer | Web Developer</p>
+            <p className="mt-1">Data Scientist | GenAI & ML Engineer</p>
           </motion.div>
         </div>
       </div>

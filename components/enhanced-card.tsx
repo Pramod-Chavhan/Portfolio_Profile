@@ -29,12 +29,12 @@ export default function EnhancedCard({ children, className = "", delay = 0, hove
     >
       <Card
         className={`bg-gray-800/50 border-gray-700 overflow-hidden transition-all duration-300 ${
-          hoverEffect ? "hover:shadow-lg hover:shadow-purple-500/10" : ""
+          hoverEffect ? "hover:shadow-lg hover:shadow-teal-500/10" : ""
         } ${className}`}
       >
         <CardContent className="p-6 relative">
           {/* Subtle gradient accent in the corner */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-full"></div>
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-teal-500/10 to-transparent rounded-bl-full"></div>
 
           {children}
         </CardContent>

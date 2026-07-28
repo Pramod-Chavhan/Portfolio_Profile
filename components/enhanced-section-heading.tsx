@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 
 interface EnhancedSectionHeadingProps {
   subtitle?: string
@@ -18,8 +17,6 @@ export default function EnhancedSectionHeading({
   centered = true,
   className = "",
 }: EnhancedSectionHeadingProps) {
-  const { theme } = useTheme()
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -34,7 +31,7 @@ export default function EnhancedSectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-lg text-primary mb-2 font-medium"
+          className="text-sm tracking-[0.2em] uppercase text-teal-400 mb-3 font-medium"
         >
           {subtitle}
         </motion.p>
@@ -45,10 +42,10 @@ export default function EnhancedSectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
-        className="text-4xl font-bold mb-4 relative inline-block"
+        className="font-display text-4xl md:text-5xl font-bold mb-4 relative inline-block tracking-tight"
       >
         {title}
-        <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></span>
+        <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-sky-500 rounded-full" />
       </motion.h2>
 
       {description && (
@@ -57,7 +54,7 @@ export default function EnhancedSectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-muted-foreground max-w-2xl mx-auto mt-4"
+          className="text-muted-foreground max-w-2xl mx-auto mt-6 text-base md:text-lg"
         >
           {description}
         </motion.p>

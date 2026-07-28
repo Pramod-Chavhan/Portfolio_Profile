@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Home, User, Code, Briefcase, Award, Mail, Layers, BarChart2, PieChart } from "lucide-react"
 import Link from "next/link"
-import { useTheme } from "next-themes"
 
 const navItems = [
   { id: "home", icon: <Home className="w-5 h-5" />, label: "Home" },
@@ -17,16 +16,13 @@ const navItems = [
   { id: "contact", icon: <Mail className="w-5 h-5" />, label: "Contact" },
 ]
 
-export default function SideNavigation({ activeSection }) {
-  const { theme } = useTheme()
-
+export default function SideNavigation({ activeSection }: { activeSection: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
       className="fixed left-5 top-1/4 -translate-y-1/2 transform z-40 hidden md:block"
-
     >
       <div className="flex flex-col items-center space-y-6">
         {navItems.map((item) => (
@@ -34,19 +30,13 @@ export default function SideNavigation({ activeSection }) {
             <div
               className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                 activeSection === item.id
-                  ? "bg-gradient-to-r from-primary to-secondary text-white"
-                  : theme === "dark"
-                    ? "bg-gray-800/50 text-gray-400 hover:bg-gray-700/70 hover:text-white"
-                    : "bg-white/80 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                  ? "bg-gradient-to-r from-teal-600 to-sky-600 text-white shadow-lg shadow-teal-900/30"
+                  : "bg-slate-800/60 text-slate-400 hover:bg-slate-700/80 hover:text-white dark:bg-slate-800/60 light:bg-white/80 light:text-gray-600"
               }`}
             >
               {item.icon}
             </div>
-            <div
-              className={`absolute left-14 origin-left scale-0 rounded-md px-3 py-2 text-sm font-medium shadow-md transition-all duration-300 group-hover:scale-100 ${
-                theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"
-              }`}
-            >
+            <div className="absolute left-14 origin-left scale-0 rounded-md px-3 py-2 text-sm font-medium shadow-md transition-all duration-300 group-hover:scale-100 bg-slate-900 text-white border border-slate-700">
               {item.label}
             </div>
           </Link>
