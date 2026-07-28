@@ -1,16 +1,16 @@
 import type React from "react"
 import "./globals.css"
-import { Outfit, Source_Sans_3 } from "next/font/google"
+import { Syne, DM_Sans } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
-const outfit = Outfit({
+const syne = Syne({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 })
 
-const sourceSans = Source_Sans_3({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -19,19 +19,17 @@ const sourceSans = Source_Sans_3({
 export const metadata = {
   title: "Pramod Chavhan — Data Scientist | GenAI & ML Engineer",
   description:
-    "Portfolio of Pramod Chavhan — Data Scientist & GenAI/ML Engineer building production RAG, LLM, and ML systems.",
-  generator: "v0.dev",
+    "Cinematic portfolio of Pramod Chavhan — production RAG, LLMs, and ML systems across Rutamsoft, Pipran Infotech, and Innodatastics.",
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn(outfit.variable, sourceSans.variable, "font-sans antialiased")}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body
+        className={cn(syne.variable, dmSans.variable, "font-sans antialiased")}
+        suppressHydrationWarning
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
           {children}
         </ThemeProvider>
       </body>

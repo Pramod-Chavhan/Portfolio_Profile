@@ -10,14 +10,15 @@ export const profile: Profile = {
     "Python Developer",
   ],
   summary:
-    "Results-oriented Data Scientist with 3.1 years of experience delivering production-ready ML and GenAI solutions — RAG pipelines, LLM fine-tuning, and end-to-end systems on Azure, AWS, and vector databases.",
+    "Results-oriented Data Scientist with 3.6 years of experience delivering production-ready ML and GenAI solutions. Proven track record in building and deploying machine learning models, LLM-based applications (RAG, fine-tuning, Hugging Face), and end-to-end data pipelines using Python, Flask, and cloud technologies (Azure, AWS, Vector Database). Adept at solving real-world business problems using AI with measurable impact — including automation, efficiency improvement, and data-driven decision-making.",
   location: "Pune, Maharashtra, India",
   phone: "+91 7775881874",
   email: "pramodchavhanm@gmail.com",
-  yearsExperience: "3.1+",
+  yearsExperience: "3.6",
+  languages: ["English", "Marathi", "Hindi"],
   socials: {
     github: "https://github.com/Pramod-Chavhan",
-    linkedin: "https://www.linkedin.com/in/pramod-chavhan",
+    linkedin: "https://www.linkedin.com/in/pramod-chavhan-65a88525b/",
   },
   cvUrl: "https://raw.githubusercontent.com/Pramod-Chavhan/Resume/main/DS_EXperience.pdf",
   education: [

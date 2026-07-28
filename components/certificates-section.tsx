@@ -1,8 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
-import Image from "next/image"
 import { useState } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { X } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -12,81 +12,77 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { certificates } from "@/data/certificates"
 import type { Certificate } from "@/types/portfolio"
-import EnhancedSectionHeading from "@/components/enhanced-section-heading"
 
 export default function CertificatesSection() {
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null)
+  const [selected, setSelected] = useState<Certificate | null>(null)
 
   return (
-    <div className="container mx-auto px-4">
-      <EnhancedSectionHeading subtitle="Credentials" title="Certificates" />
+    <section className="section-pad border-t border-white/[0.04]">
+      <div className="container-pro">
+        <div className="mb-12 max-w-2xl">
+          <p className="eyebrow mb-3">Proof</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-slate-50">
+            Certificates
+          </h2>
+        </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="certificate-swiper"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          {certificates.map((certificate) => (
-            <SwiperSlide key={certificate.id}>
-              <div
-                className="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 transition-all duration-300 hover:shadow-lg hover:shadow-teal-900/20 h-64"
-                onClick={() => setSelectedCertificate(certificate)}
-              >
-                <Image
-                  src={certificate.image || "/placeholder.svg"}
-                  alt={certificate.alt}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <p className="text-white font-medium px-4 py-2 rounded-full bg-teal-600/80 backdrop-blur-sm">
-                    View Certificate
-                  </p>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </motion.div>
-
-      <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-        <DialogContent className="max-w-3xl bg-slate-950 border-slate-800">
-          <button
-            onClick={() => setSelectedCertificate(null)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
+            className="certificate-swiper"
           >
+            {certificates.map((c) => (
+              <SwiperSlide key={c.id}>
+                <button
+                  type="button"
+                  onClick={() => setSelected(c)}
+                  className="group relative w-full h-56 overflow-hidden rounded-xl border border-white/[0.06] bg-slate-900/50 text-left"
+                >
+                  <Image
+                    src={c.image}
+                    alt={c.alt}
+                    width={480}
+                    height={320}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                  <p className="absolute bottom-3 left-3 right-3 text-xs text-slate-200 line-clamp-2">{c.alt}</p>
+                </button>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
+      </div>
+
+      <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
+        <DialogContent className="max-w-3xl bg-slate-950 border-slate-800">
+          <button type="button" onClick={() => setSelected(null)} className="absolute right-4 top-4 opacity-70 hover:opacity-100">
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
           </button>
-          {selectedCertificate && (
-            <div className="p-0">
+          {selected && (
+            <div>
               <Image
-                src={selectedCertificate.image || "/placeholder.svg"}
-                alt={selectedCertificate.alt}
-                width={800}
-                height={600}
+                src={selected.image}
+                alt={selected.alt}
+                width={900}
+                height={650}
                 className="w-full h-auto object-contain"
               />
-              <p className="text-center mt-4 text-lg font-medium">{selectedCertificate.alt}</p>
+              <p className="text-center mt-4 text-sm text-slate-300">{selected.alt}</p>
             </div>
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </section>
   )
 }

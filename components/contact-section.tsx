@@ -1,270 +1,159 @@
 "use client"
 
+import { useState, type FormEvent, type ChangeEvent } from "react"
 import { motion } from "framer-motion"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react"
+import { profile } from "@/data/profile"
+import Magnetic from "@/components/motion/magnetic"
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" })
+  const [sending, setSending] = useState(false)
+  const [done, setDone] = useState(false)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
+    setSending(true)
     setTimeout(() => {
-      console.log("Form submitted:", formData)
-      setIsSubmitting(false)
-      setSubmitSuccess(true)
-      setFormData({ name: "", email: "", subject: "", message: "" })
-
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitSuccess(false), 5000)
-    }, 1500)
+      setSending(false)
+      setDone(true)
+      setForm({ name: "", email: "", subject: "", message: "" })
+      setTimeout(() => setDone(false), 4000)
+    }, 900)
   }
-
-  const contactInfo = [
-    {
-      icon: <Mail className="h-6 w-6 text-teal-400" />,
-      title: "Email",
-      details: "pramodchavhanm@gmail.com",
-      link: "mailto:pramodchavhanm@gmail.com",
-    },
-    {
-      icon: <Phone className="h-6 w-6 text-sky-400" />,
-      title: "Phone",
-      details: "+91 7775881874" + " | " + "+91 9325891585",
-      link: "tel:+919325891585",
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-cyan-400" />,
-      title: "Location",
-      details: "Pune, Maharashtra, India",
-      link: "https://maps.google.com/?q=Pune,Maharashtra,India",
-    },
-  ]
-
-  const socialLinks = [
-    { icon: <Github className="h-5 w-5" />, href: "https://github.com/Pramod-Chavhan", label: "GitHub" },
-    {
-      icon: <Linkedin className="h-5 w-5" />,
-      href: "https://www.linkedin.com/in/pramod-chavhan-65a88525b/",
-      label: "LinkedIn",
-    },
-    { icon: <Instagram className="h-5 w-5" />, href: "#", label: "Instagram" },
-  ]
 
   return (
-    <div className="container mx-auto px-4">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <p className="text-sm tracking-[0.2em] uppercase text-teal-400 mb-3">Get In Touch</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Contact Me</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-sky-500 mx-auto"></div>
-      </motion.div>
+    <section className="section-pad border-t border-white/[0.04]">
+      <div className="container-pro">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className="eyebrow mb-3">Contact</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-slate-50 mb-4">
+              Let&apos;s build something sharp
+            </h2>
+            <p className="text-slate-400 mb-8 leading-relaxed">
+              Open to GenAI, ML engineering, and product AI roles. Reach out for collaborations or opportunities.
+            </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="lg:col-span-1 space-y-6"
-        >
-          {contactInfo.map((info, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-slate-900/60 border-slate-800 hover:shadow-lg hover:shadow-teal-900/20 transition-all duration-300">
-                <CardContent className="p-6">
-                  <a href={info.link} target="_blank" rel="noopener noreferrer" className="flex items-start space-x-4">
-                    <div className="p-3 rounded-full bg-gray-700/50">{info.icon}</div>
-                    <div>
-                      <h3 className="text-lg font-semibold">{info.title}</h3>
-                      <p className="text-gray-300">{info.details}</p>
-                    </div>
-                  </a>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+            <div className="space-y-4">
+              <a href={`mailto:${profile.email}`} className="flex items-center gap-3 text-slate-300 hover:text-teal-300 transition-colors">
+                <Mail className="h-4 w-4 text-teal-400" />
+                {profile.email}
+              </a>
+              <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-slate-300 hover:text-teal-300 transition-colors">
+                <Phone className="h-4 w-4 text-sky-400" />
+                {profile.phone}
+              </a>
+              <p className="flex items-center gap-3 text-slate-400">
+                <MapPin className="h-4 w-4 text-cyan-400" />
+                {profile.location}
+              </p>
+            </div>
 
-          <div className="pt-6">
-            <h3 className="text-lg font-semibold mb-4">Connect With Me</h3>
-            <div className="flex space-x-4">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-slate-800 hover:bg-gradient-to-r hover:from-teal-600 hover:to-sky-600 transition-colors duration-300"
-                  aria-label={link.label}
-                >
-                  {link.icon}
-                </a>
-              ))}
+            <div className="flex gap-2 mt-8">
+              <a
+                href={profile.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-white/10 text-slate-400 hover:text-teal-300 hover:border-teal-400/30 transition-colors"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href={profile.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-white/10 text-slate-400 hover:text-teal-300 hover:border-teal-400/30 transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
             </div>
           </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="lg:col-span-2"
-        >
-          <Card className="bg-gray-800/50 border-gray-700">
-            <CardContent className="p-6">
-              {submitSuccess ? (
-                <div className="flex flex-col items-center justify-center py-8">
-                  <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-8 w-8 text-green-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-green-500 mb-2">Message Sent Successfully!</h3>
-                  <p className="text-gray-300 text-center">
-                    Thank you for reaching out. I'll get back to you as soon as possible.
-                  </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7 surface p-6 md:p-8"
+          >
+            {done ? (
+              <div className="py-16 text-center">
+                <p className="font-display text-2xl text-teal-300 mb-2">Message sent</p>
+                <p className="text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <Field label="Name" name="name" value={form.name} onChange={onChange} required />
+                  <Field label="Email" name="email" type="email" value={form.email} onChange={onChange} required />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Your Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="John Doe"
-                        required
-                        className="bg-gray-700/50 border-gray-600"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Your Email
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="john@example.com"
-                        required
-                        className="bg-gray-700/50 border-gray-600"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="How can I help you?"
-                      required
-                      className="bg-gray-700/50 border-gray-600"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
-                      Your Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Write your message here..."
-                      rows={6}
-                      required
-                      className="bg-gray-700/50 border-gray-600 resize-none"
-                    />
-                  </div>
-                  <Button
+                <Field label="Subject" name="subject" value={form.subject} onChange={onChange} required />
+                <div>
+                  <label htmlFor="message" className="text-xs uppercase tracking-wider text-slate-500 mb-2 block">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    value={form.message}
+                    onChange={onChange}
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-slate-100 outline-none focus:border-teal-400/40 resize-none"
+                  />
+                </div>
+                <Magnetic>
+                  <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full gradient-btn relative overflow-hidden group"
+                    disabled={sending}
+                    className="inline-flex items-center gap-2 rounded-full gradient-btn px-6 py-3 text-sm disabled:opacity-60"
                   >
-                    <span className="absolute top-0 left-0 w-full h-full bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-                    {isSubmitting ? (
-                      <div className="flex items-center">
-                        <svg
-                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          ></circle>
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          ></path>
-                        </svg>
-                        Sending...
-                      </div>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              )}
-            </CardContent>
-          </Card>
-        </motion.div>
+                    <Send className="h-4 w-4" />
+                    {sending ? "Sending…" : "Send message"}
+                  </button>
+                </Magnetic>
+              </form>
+            )}
+          </motion.div>
+        </div>
       </div>
+    </section>
+  )
+}
+
+function Field({
+  label,
+  name,
+  value,
+  onChange,
+  type = "text",
+  required,
+}: {
+  label: string
+  name: string
+  value: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  type?: string
+  required?: boolean
+}) {
+  return (
+    <div>
+      <label htmlFor={name} className="text-xs uppercase tracking-wider text-slate-500 mb-2 block">
+        {label}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-slate-100 outline-none focus:border-teal-400/40"
+      />
     </div>
   )
 }

@@ -1,70 +1,58 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import EnhancedSectionHeading from "@/components/enhanced-section-heading"
-import EnhancedCard from "@/components/enhanced-card"
-import { technicalSkills, toolsSkills, softSkills } from "@/data/skills"
-import type { Skill } from "@/types/portfolio"
+import { languageSkills, mlAiSkills, toolsSkills } from "@/data/skills"
+
+const groups = [
+  { title: "Languages & Frameworks", items: languageSkills },
+  { title: "Machine Learning & AI", items: mlAiSkills },
+  { title: "Tools & Platforms", items: toolsSkills },
+]
 
 export default function SkillsSection() {
-  const renderSkills = (skills: Skill[]) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {skills.map((skill, index) => (
-        <EnhancedCard key={skill.name} delay={index * 0.04}>
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="font-medium text-slate-100">{skill.name}</h3>
-              <span className="text-sm text-teal-400">{skill.level}%</span>
-            </div>
-            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
-                transition={{ duration: 0.8, delay: 0.08 }}
-                viewport={{ once: true }}
-                className="h-full bg-gradient-to-r from-teal-500 to-sky-500 rounded-full"
-              />
-            </div>
-          </div>
-        </EnhancedCard>
-      ))}
-    </div>
-  )
-
   return (
-    <div className="container mx-auto px-4">
-      <EnhancedSectionHeading
-        subtitle="Capabilities"
-        title="Skills"
-        description="Languages, ML/GenAI stack, vector databases, and cloud tooling used to ship production AI systems."
-      />
-
-      <Tabs defaultValue="technical" className="w-full">
-        <div className="flex justify-center mb-12">
-          <TabsList className="grid grid-cols-3 w-full max-w-md bg-slate-900/80 border border-slate-800">
-            <TabsTrigger value="technical" className="text-base data-[state=active]:bg-teal-600/20">
-              Technical
-            </TabsTrigger>
-            <TabsTrigger value="tools" className="text-base data-[state=active]:bg-sky-600/20">
-              Tools
-            </TabsTrigger>
-            <TabsTrigger value="soft" className="text-base data-[state=active]:bg-cyan-600/20">
-              Soft Skills
-            </TabsTrigger>
-          </TabsList>
+    <section className="section-pad border-t border-white/[0.04]">
+      <div className="container-pro">
+        <div className="mb-14 max-w-2xl">
+          <p className="eyebrow mb-3">Capabilities</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-slate-50 mb-4">
+            Skills
+          </h2>
+          <p className="text-slate-400 text-lg">
+            Stack used to deliver production RAG, LLM fine-tuning, and end-to-end ML systems.
+          </p>
         </div>
 
-        <TabsContent value="technical" className="mt-0">
-          {renderSkills(technicalSkills)}
-        </TabsContent>
-        <TabsContent value="tools" className="mt-0">
-          {renderSkills(toolsSkills)}
-        </TabsContent>
-        <TabsContent value="soft" className="mt-0">
-          {renderSkills(softSkills)}
-        </TabsContent>
-      </Tabs>
-    </div>
+        <div className="space-y-12">
+          {groups.map((group, gi) => (
+            <motion.div
+              key={group.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: gi * 0.08 }}
+            >
+              <h3 className="text-sm font-medium text-slate-300 mb-4 tracking-wide">{group.title}</h3>
+              <div className="flex flex-wrap gap-2.5">
+                {group.items.map((skill, i) => (
+                  <motion.span
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.02 * i }}
+                    whileHover={{ y: -2, borderColor: "rgba(45,212,191,0.45)" }}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3.5 py-2 text-sm text-slate-300"
+                  >
+                    {skill.name}
+                    <span className="text-[10px] tabular-nums text-teal-400/80">{skill.level}</span>
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

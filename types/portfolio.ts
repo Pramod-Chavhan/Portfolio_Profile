@@ -15,6 +15,8 @@ export type Project = {
   metrics: ProjectMetric[]
   technologies: string[]
   featured?: boolean
+  company?: string
+  period?: string
   iconKey: "brain" | "chart" | "database" | "code" | "bot" | "search"
 }
 
@@ -53,6 +55,7 @@ export type Profile = {
   phone: string
   email: string
   yearsExperience: string
+  languages: string[]
   socials: {
     github: string
     linkedin: string
