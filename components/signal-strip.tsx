@@ -1,13 +1,18 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { profile } from "@/data/profile"
 import { experiences } from "@/data/experience"
+import { projects } from "@/data/projects"
+import { certificates } from "@/data/certificates"
+
+const featuredCount = projects.filter((p) => p.featured).length
 
 const signals = [
-  { label: "Experience", value: "3.6 yrs" },
-  { label: "Focus", value: "GenAI · RAG · ML" },
-  { label: "Current", value: experiences[0].company },
-  { label: "Base", value: "Pune, India" },
+  { label: "Experience", value: `${profile.yearsExperience} yrs` },
+  { label: "Featured work", value: `${featuredCount} projects` },
+  { label: "Certifications", value: `${certificates.length} earned` },
+  { label: "Current role", value: experiences[0]?.company ?? "—" },
 ]
 
 export default function SignalStrip() {

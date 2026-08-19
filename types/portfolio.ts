@@ -3,6 +3,12 @@ export type ProjectMetric = {
   value: string
 }
 
+export type ProjectCaseStudy = {
+  problem: string
+  approach: string
+  highlights: string[]
+}
+
 export type Project = {
   id: number
   title: string
@@ -18,6 +24,8 @@ export type Project = {
   company?: string
   period?: string
   iconKey: "brain" | "chart" | "database" | "code" | "bot" | "search"
+  caseStudy?: ProjectCaseStudy
+  nda?: boolean
 }
 
 export type Experience = {
@@ -51,10 +59,14 @@ export type Profile = {
   title: string
   roles: string[]
   summary: string
+  heroTagline: string
   location: string
   phone: string
   email: string
+  whatsapp?: string
   yearsExperience: string
+  openToWork: boolean
+  availability: string
   languages: string[]
   socials: {
     github: string

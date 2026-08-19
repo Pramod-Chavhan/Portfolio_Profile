@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 
 export default function CustomCursor() {
+  const reduce = useReducedMotion()
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [clicked, setClicked] = useState(false)
@@ -11,6 +12,7 @@ export default function CustomCursor() {
   const [hidden, setHidden] = useState(true)
 
   useEffect(() => {
+    if (reduce) return
     const finePointer = window.matchMedia("(pointer: fine)").matches
     if (!finePointer) return
     setEnabled(true)
@@ -46,9 +48,9 @@ export default function CustomCursor() {
         el.removeEventListener("mouseleave", leave)
       })
     }
-  }, [])
+  }, [reduce])
 
-  if (!enabled) return null
+  if (reduce || !enabled) return null
 
   const cursorVariants = {
     default: { x: position.x - 16, y: position.y - 16, height: 32, width: 32 },

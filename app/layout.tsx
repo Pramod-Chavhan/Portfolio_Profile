@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Syne, DM_Sans } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import JsonLd from "@/components/json-ld"
 import { cn } from "@/lib/utils"
 
 const syne = Syne({
@@ -17,7 +18,7 @@ const dmSans = DM_Sans({
   display: "swap",
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-profile-theta.vercel.app"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
+          <JsonLd />
           {children}
         </ThemeProvider>
       </body>

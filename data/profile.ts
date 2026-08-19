@@ -11,10 +11,15 @@ export const profile: Profile = {
   ],
   summary:
     "Results-oriented Data Scientist with 3.6 years of experience delivering production-ready ML and GenAI solutions. Proven track record in building and deploying machine learning models, LLM-based applications (RAG, fine-tuning, Hugging Face), and end-to-end data pipelines using Python, Flask, and cloud technologies (Azure, AWS, Vector Database). Adept at solving real-world business problems using AI with measurable impact — including automation, efficiency improvement, and data-driven decision-making.",
+  heroTagline:
+    "Production RAG chatbots & ML systems — shipped at Rutamsoft and Pipran Infotech with measurable business impact.",
   location: "Pune, Maharashtra, India",
   phone: "+91 7775881874",
   email: "pramodchavhanm@gmail.com",
+  whatsapp: "917775881874",
   yearsExperience: "3.6",
+  openToWork: true,
+  availability: "Open to full-time · Remote & hybrid · Pune",
   languages: ["English", "Marathi", "Hindi"],
   socials: {
     github: "https://github.com/Pramod-Chavhan",

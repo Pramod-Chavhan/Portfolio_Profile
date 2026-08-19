@@ -164,3 +164,17 @@ html {
 .certificate-swiper .swiper-button-prev {
   color: #5eead4 !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .gradient-btn {
+    animation: none;
+  }
+
+  .film-grain {
+    display: none;
+  }
+}

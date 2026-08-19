@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ExternalLink, Github, ArrowUpRight } from "lucide-react"
+import { ExternalLink, Github, ArrowUpRight, Lock } from "lucide-react"
 import { getSortedProjects } from "@/data/projects"
 import type { Project } from "@/types/portfolio"
 
@@ -28,7 +28,7 @@ export default function ProjectsSection() {
             Projects that shipped
           </h2>
           <p className="text-slate-400 text-lg leading-relaxed">
-            Featured systems from the resume — RAG chatbots, computer vision, IoT, and predictive ML with measurable impact.
+            Case studies from production — RAG chatbots, computer vision, IoT, and predictive ML with measurable impact.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function ProjectsSection() {
         {more.length > 0 && (
           <div className="mt-20">
             <p className="eyebrow mb-6">More experiments</p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {more.map((p, i) => (
                 <motion.article
                   key={p.id}
@@ -49,36 +49,41 @@ export default function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: (i % 3) * 0.06 }}
-                  className="group surface p-5 hover:border-teal-400/25 transition-colors"
-                  style={{ perspective: 800 }}
+                  className="group surface overflow-hidden hover:border-teal-400/25 transition-colors"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <span className="text-[10px] tracking-widest uppercase text-teal-400/80">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                    <ProjectImage project={p} variant="card" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                    <span className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2 py-1 rounded-full bg-slate-950/75 text-teal-300 border border-teal-400/20">
                       {iconMap[p.iconKey]}
                     </span>
-                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {p.demo && (
-                        <a href={p.demo} target="_blank" rel="noopener noreferrer" aria-label="Demo">
-                          <ExternalLink className="h-4 w-4 text-slate-400 hover:text-teal-300" />
-                        </a>
-                      )}
-                      {p.github && (
-                        <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label="Code">
-                          <Github className="h-4 w-4 text-slate-400 hover:text-teal-300" />
-                        </a>
-                      )}
-                    </div>
                   </div>
-                  <h3 className="font-display font-semibold text-slate-100 mb-2 group-hover:text-teal-200 transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 line-clamp-2 mb-4">{p.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.technologies.slice(0, 3).map((t) => (
-                      <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-400">
-                        {t}
-                      </span>
-                    ))}
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="font-display font-semibold text-slate-100 group-hover:text-teal-200 transition-colors">
+                        {p.title}
+                      </h3>
+                      <div className="flex gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                        {p.demo && (
+                          <a href={p.demo} target="_blank" rel="noopener noreferrer" aria-label="Demo">
+                            <ExternalLink className="h-4 w-4 text-slate-400 hover:text-teal-300" />
+                          </a>
+                        )}
+                        {p.github && (
+                          <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label="Code">
+                            <Github className="h-4 w-4 text-slate-400 hover:text-teal-300" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-sm text-slate-500 line-clamp-2 mb-4">{p.description}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.technologies.slice(0, 3).map((t) => (
+                        <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-400">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </motion.article>
               ))}
@@ -87,6 +92,22 @@ export default function ProjectsSection() {
         )}
       </div>
     </section>
+  )
+}
+
+function ProjectImage({ project, variant }: { project: Project; variant: "hero" | "card" }) {
+  const sizes = variant === "hero" ? "(max-width:768px) 100vw, 40vw" : "(max-width:768px) 100vw, 33vw"
+
+  return (
+    <Image
+      src={project.image}
+      alt={project.title}
+      fill
+      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      sizes={sizes}
+      quality={80}
+      priority={variant === "hero"}
+    />
   )
 }
 
@@ -99,25 +120,28 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`grid md:grid-cols-12 gap-6 md:gap-10 items-center surface overflow-hidden p-4 md:p-6 ${
-        reverse ? "" : ""
-      }`}
+      className="group grid md:grid-cols-12 gap-6 md:gap-10 items-stretch surface overflow-hidden p-4 md:p-6"
     >
-      <div className={`md:col-span-5 relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 ${reverse ? "md:order-2" : ""}`}>
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-700 hover:scale-105"
-          sizes="(max-width:768px) 100vw, 40vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
-        <span className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full bg-slate-950/70 text-teal-300 border border-teal-400/20">
+      <div
+        className={`md:col-span-5 relative aspect-[16/10] md:aspect-auto md:min-h-[280px] rounded-xl overflow-hidden bg-slate-900 ${
+          reverse ? "md:order-2" : ""
+        }`}
+      >
+        <ProjectImage project={project} variant="hero" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 ring-1 ring-inset ring-white/[0.06] rounded-xl pointer-events-none" />
+        <span className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-sm text-teal-300 border border-teal-400/20">
           Featured · {iconMap[project.iconKey]}
         </span>
+        {project.nda && (
+          <span className="absolute top-3 right-3 inline-flex items-center gap-1 text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full bg-amber-950/85 backdrop-blur-sm text-amber-200/90 border border-amber-400/20">
+            <Lock className="h-3 w-3" />
+            Enterprise · NDA
+          </span>
+        )}
       </div>
 
-      <div className={`md:col-span-7 ${reverse ? "md:order-1" : ""}`}>
+      <div className={`md:col-span-7 flex flex-col ${reverse ? "md:order-1" : ""}`}>
         {(project.company || project.period) && (
           <p className="text-xs text-teal-400/90 mb-2">
             {[project.company, project.period].filter(Boolean).join(" · ")}
@@ -127,6 +151,27 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
           {project.title}
         </h3>
         <p className="text-slate-400 leading-relaxed mb-5 max-w-xl">{project.description}</p>
+
+        {project.caseStudy && (
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+              <p className="text-[10px] uppercase tracking-wider text-slate-500 mb-2">Problem</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{project.caseStudy.problem}</p>
+            </div>
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+              <p className="text-[10px] uppercase tracking-wider text-slate-500 mb-2">Approach</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{project.caseStudy.approach}</p>
+            </div>
+            <ul className="sm:col-span-2 space-y-2">
+              {project.caseStudy.highlights.map((h) => (
+                <li key={h} className="flex gap-2 text-sm text-slate-400">
+                  <span className="text-teal-400 mt-1 shrink-0">→</span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="grid grid-cols-3 gap-3 mb-6 max-w-md">
           {project.metrics.map((m) => (
@@ -145,7 +190,7 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 mt-auto">
           {project.demo ? (
             <a
               href={project.demo}
@@ -155,8 +200,12 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
             >
               Live demo <ArrowUpRight className="h-4 w-4" />
             </a>
+          ) : project.nda ? (
+            <span className="inline-flex items-center gap-1.5 text-sm text-amber-200/70">
+              <Lock className="h-3.5 w-3.5" /> Production · available on request
+            </span>
           ) : (
-            <span className="text-sm text-slate-600">Demo private</span>
+            <span className="text-sm text-slate-600">Demo coming soon</span>
           )}
           {project.github ? (
             <a
