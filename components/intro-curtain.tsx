@@ -14,7 +14,7 @@ export default function IntroCurtain() {
       return
     }
     try {
-      if (sessionStorage.getItem("portfolio-intro-seen")) {
+      if (localStorage.getItem("portfolio-intro-seen")) {
         setShow(false)
         return
       }
@@ -24,7 +24,7 @@ export default function IntroCurtain() {
     const t = setTimeout(() => {
       setShow(false)
       try {
-        sessionStorage.setItem("portfolio-intro-seen", "1")
+        localStorage.setItem("portfolio-intro-seen", "1")
       } catch {
         /* ignore */
       }

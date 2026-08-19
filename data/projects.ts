@@ -7,7 +7,7 @@ export const projects: Project[] = [
     title: "QuotePlan EVA AI Chatbot",
     description:
       "FastAPI RAG chatbot for QuotePlan users — document Q&A, project lookup, pending PO tracking, P&L analysis, and project creation via natural language with permission-based actions.",
-    image: "/projects/quoteplan-eva.svg",
+    image: "/projects/quoteplan-eva.png",
     tags: ["python", "rag", "gen-ai", "nlp"],
     category: "nlp",
     github: undefined,
@@ -31,13 +31,25 @@ export const projects: Project[] = [
     company: "Rutamsoft Technology LLP",
     period: "Nov 2025 – Present",
     iconKey: "bot",
+    nda: true,
+    caseStudy: {
+      problem:
+        "QuotePlan users spent too long hunting documents, POs, and project data across a complex ERP-style product.",
+      approach:
+        "Built a FastAPI RAG stack with Qdrant vector search, sentence-transformer embeddings, and permission-aware tool calls so users can query and act in natural language.",
+      highlights: [
+        "Document Q&A, project lookup, and pending PO tracking in one chat interface",
+        "P&L analysis and project creation via NL commands with role-based access",
+        "Live in production at Rutamsoft — enterprise deployment under NDA",
+      ],
+    },
   },
   {
     id: 20,
     title: "PDF Semantic Search (RAG)",
     description:
       "Retrieval-Augmented Generation pipeline for large PDFs — PyPDF2 ingestion, OpenAI embeddings, Pinecone similarity search, and FastAPI answers with 95% relevancy on 500+ page docs.",
-    image: "/projects/pdf-rag.svg",
+    image: "/projects/pdf-rag.png",
     tags: ["python", "rag", "gen-ai", "nlp"],
     category: "nlp",
     github: undefined,
@@ -52,13 +64,25 @@ export const projects: Project[] = [
     company: "Pipran Infotech Pvt Ltd",
     period: "Aug 2025 – Sep 2025",
     iconKey: "search",
+    nda: true,
+    caseStudy: {
+      problem:
+        "Teams couldn't quickly find answers inside 500+ page PDF manuals — keyword search missed context and wasted hours.",
+      approach:
+        "Designed a RAG pipeline: PyPDF2 chunking, OpenAI embeddings, Pinecone similarity search, and FastAPI endpoints for semantic Q&A.",
+      highlights: [
+        "95% answer relevancy on large technical documents",
+        "Search time reduced by ~70% vs manual lookup",
+        "Scalable ingestion pipeline for new document uploads",
+      ],
+    },
   },
   {
     id: 16,
     title: "ML Appointment Scheduler",
     description:
       "Flask + React home sample collection scheduler for diagnostic centers — Google Maps agent assignment, Random Forest delivery prediction, Twilio SMS, and Firebase booking. Cut wait times by 20% with 90% on-time delivery.",
-    image: "/ASFSK.png",
+    image: "/projects/appointment-scheduler.png",
     tags: ["python", "ml", "data-science", "web"],
     category: "data-science",
     github: "https://github.com/Pramod-Chavhan/appointment-scheduler",
@@ -82,13 +106,24 @@ export const projects: Project[] = [
     company: "Pipran Infotech Pvt Ltd",
     period: "Apr 2023 – Sep 2023",
     iconKey: "chart",
+    caseStudy: {
+      problem:
+        "Diagnostic centers struggled with manual scheduling, long patient wait times, and unpredictable phlebotomist routing.",
+      approach:
+        "Shipped Flask + React app with Google Maps agent assignment, Random Forest delivery prediction, Twilio SMS alerts, and Firebase booking sync.",
+      highlights: [
+        "20% reduction in patient wait times",
+        "90% on-time sample collection rate",
+        "50+ daily home collections handled reliably",
+      ],
+    },
   },
   {
     id: 1,
     title: "Face Recognition Attendance",
     description:
       "Real-time attendance with OpenCV and insightFace ResNet-34 — Flask backend, Firebase logging, and React admin dashboard for 1000+ students. Reduced manual effort by 60% and improved accuracy by 40%.",
-    image: "/facereg.jpg",
+    image: "/projects/face-recognition.png",
     tags: ["python", "ml", "opencv", "computer-vision"],
     category: "computer-vision",
     github: "https://github.com/Pramod-Chavhan/face-recognition-attendance",
@@ -110,13 +145,24 @@ export const projects: Project[] = [
     company: "Pipran Infotech Pvt Ltd",
     period: "Oct 2023 – Mar 2024",
     iconKey: "brain",
+    caseStudy: {
+      problem:
+        "Manual college attendance was slow, error-prone, and couldn't scale beyond 1000+ students.",
+      approach:
+        "Built real-time face recognition with insightFace ResNet-34, OpenCV pipeline, Flask API, Firebase logging, and React admin dashboard.",
+      highlights: [
+        "60% less manual admin effort",
+        "40% accuracy improvement over legacy process",
+        "1000+ students tracked in production",
+      ],
+    },
   },
   {
     id: 17,
     title: "Smart Irrigation System",
     description:
       "IoT irrigation for Punjab farms — Raspberry Pi sensors, Random Forest predictions via OpenWeather API, and Flask remote access. Increased crop yield by 15% and reduced water usage by 25% across 10 hectares.",
-    image: "/errigation.jpg",
+    image: "/projects/smart-irrigation.png",
     tags: ["iot", "python", "ml", "time-series"],
     category: "iot",
     github: "https://github.com/Pramod-Chavhan/smart-irrigation",
@@ -144,7 +190,7 @@ export const projects: Project[] = [
     title: "BERT Question Answering",
     description:
       "Fine-tuned BERT for medical document Q&A — PDFs, Word, JSON via FastAPI, with Pinecone storage and sub-2s answers for clinicians. Improved query accuracy by 40%.",
-    image: "/question-answer.PNG",
+    image: "/projects/bert-qa.png",
     tags: ["python", "nlp", "bert", "qa"],
     category: "nlp",
     github: "https://github.com/Pramod-Chavhan/question-answering",
@@ -166,7 +212,7 @@ export const projects: Project[] = [
     title: "Second Hand Car Price Prediction",
     description:
       "ML model predicting used-car market value from make, model, year, mileage, and condition for buyers and sellers.",
-    image: "/car.png",
+    image: "/projects/car-price.png",
     tags: ["python", "ml", "regression", "data-analysis"],
     category: "predictive-analytics",
     github: "https://github.com/Pramod-Chavhan/car-price-prediction",
@@ -184,7 +230,7 @@ export const projects: Project[] = [
     title: "Forest Fire Prediction",
     description:
       "Regression model predicting forest fire spread and intensity from meteorological and geographical features.",
-    image: "/forest.jpg",
+    image: "/projects/forest-fire.png",
     tags: ["python", "ml", "regression", "environmental"],
     category: "predictive-analytics",
     github: "https://github.com/Pramod-Chavhan/forest-fire-prediction",
@@ -202,7 +248,7 @@ export const projects: Project[] = [
     title: "Credit Score Prediction",
     description:
       "Classification model for creditworthiness from financial history, payment patterns, and demographics.",
-    image: "/credit.PNG",
+    image: "/projects/credit-score.png",
     tags: ["python", "ml", "classification", "finance"],
     category: "finance",
     github: "https://github.com/Pramod-Chavhan/credit-score-prediction",
@@ -220,7 +266,7 @@ export const projects: Project[] = [
     title: "Backorder Prediction",
     description:
       "Supply-chain classifier identifying products at risk of backorder from inventory, lead time, and demand signals.",
-    image: "/backorder.PNG",
+    image: "/projects/backorder.png",
     tags: ["python", "ml", "classification", "supply-chain"],
     category: "predictive-analytics",
     github: "https://github.com/Pramod-Chavhan/backorder-prediction",
@@ -238,7 +284,7 @@ export const projects: Project[] = [
     title: "House Price Prediction",
     description:
       "Residential price regression from location, size, amenities, and market trends for data-driven valuations.",
-    image: "/house.PNG",
+    image: "/projects/house-price.png",
     tags: ["python", "ml", "regression", "real-estate"],
     category: "predictive-analytics",
     github: "https://github.com/Pramod-Chavhan/house-price-prediction",
@@ -256,7 +302,7 @@ export const projects: Project[] = [
     title: "Breast Cancer Survival Prediction",
     description:
       "Survival analysis model using clinical and demographic features to support oncology prognoses.",
-    image: "/cancer.PNG",
+    image: "/projects/breast-cancer.png",
     tags: ["python", "ml", "healthcare", "survival-analysis"],
     category: "healthcare",
     github: "https://github.com/Pramod-Chavhan/cancer-survival-prediction",
@@ -274,7 +320,7 @@ export const projects: Project[] = [
     title: "ChatGPT Clone (GenAI)",
     description:
       "Transformer-based conversational GenAI chatbot with contextual multi-turn dialogue.",
-    image: "/clone.PNG",
+    image: "/projects/chatgpt-clone.png",
     tags: ["python", "nlp", "transformers", "gen-ai"],
     category: "nlp",
     github: "https://github.com/Pramod-Chavhan/chatgpt-clone",
@@ -292,7 +338,7 @@ export const projects: Project[] = [
     title: "Custom Trained Chatbot",
     description:
       "Domain-specific chatbot fine-tuned for specialized knowledge areas across industries.",
-    image: "/chatbot.PNG",
+    image: "/projects/custom-chatbot.png",
     tags: ["python", "nlp", "fine-tuning", "chatbot"],
     category: "nlp",
     github: "https://github.com/Pramod-Chavhan/custom-chatbot",
@@ -310,7 +356,7 @@ export const projects: Project[] = [
     title: "Health Chatbot",
     description:
       "Healthcare chatbot for medical Q&A and resource navigation, trained on verified medical information.",
-    image: "/helthcare.PNG",
+    image: "/projects/health-chatbot.png",
     tags: ["python", "nlp", "healthcare", "chatbot"],
     category: "healthcare",
     github: "https://github.com/Pramod-Chavhan/health-chatbot",
@@ -328,7 +374,7 @@ export const projects: Project[] = [
     title: "Image to Text Generation",
     description:
       "Vision-language system generating natural language captions from scenes, objects, and relationships.",
-    image: "/testimage.PNG",
+    image: "/projects/image-to-text.png",
     tags: ["python", "computer-vision", "nlp", "image-captioning"],
     category: "computer-vision",
     github: "https://github.com/Pramod-Chavhan/image-to-text",
@@ -346,7 +392,7 @@ export const projects: Project[] = [
     title: "Sonar Rock vs Mine Prediction",
     description:
       "Sonar signal classifier distinguishing rocks from mines for maritime and defense applications.",
-    image: "/sonar.PNG",
+    image: "/projects/sonar.png",
     tags: ["python", "ml", "classification", "signal-processing"],
     category: "data-science",
     github: "https://github.com/Pramod-Chavhan/sonar-classification",
@@ -364,7 +410,7 @@ export const projects: Project[] = [
     title: "Text to Image Generation",
     description:
       "Generative system creating images from detailed text prompts for design and creative workflows.",
-    image: "/image.PNG",
+    image: "/projects/text-to-image.png",
     tags: ["python", "deep-learning", "gen-ai", "computer-vision"],
     category: "computer-vision",
     github: "https://github.com/Pramod-Chavhan/text-to-image",
@@ -382,7 +428,7 @@ export const projects: Project[] = [
     title: "Advanced Virtual Assistant (Jarvis)",
     description:
       "Voice-activated assistant with NLP for tasks, Q&A, workflow automation, and API integrations.",
-    image: "/virtual.jpg",
+    image: "/projects/jarvis.png",
     tags: ["python", "ml", "nlp", "voice-recognition"],
     category: "nlp",
     github: "https://github.com/Pramod-Chavhan/jarvis-assistant",
